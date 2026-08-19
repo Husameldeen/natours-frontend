@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 function Header() {
   return (
     <header className="header">
       <nav className="nav nav--tours">
-        <a href="#" className="nav__el">
+        <Link to="/" className="nav__el">
           All tours
-        </a>
+        </Link>
         <form className="nav__search">
           <button className="nav__search-btn">
             <svg>
@@ -27,7 +29,7 @@ function Header() {
         </a>
         <a href="#" className="nav__el">
           <img
-            src="src/assets/users/default.jpg"
+            src="src/assets/users/user-1.jpg"
             alt="User photo"
             className="nav__user-img"
           />

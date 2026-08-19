@@ -8,7 +8,7 @@ function Card({ tour }) {
     // description,
     // durationWeeks,
     // guides,
-    // imageCover,
+    imageCover,
     // images,
     // secretTour,
     // startDates,
@@ -29,7 +29,7 @@ function Card({ tour }) {
         <div className="card__picture">
           <div className="card__picture-overlay">&nbsp;</div>
           <img
-            src="src/assets/tour-1-cover.jpg"
+            src={`src/assets/tours/${imageCover}`}
             alt="Tour 1"
             className="card__picture-img"
           />

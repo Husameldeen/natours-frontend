@@ -1,35 +1,33 @@
-import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import CardContainer from "../components/CardContainer";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import Main from "../components/Main";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 function HomePage() {
-  const [tours, setTours] = useState([]);
+  async function getTours() {
+    const { data } = await axios.get("http://127.0.0.1:5000/api/v1/tours");
 
-  useEffect(
-    () =>
-      async function () {
-        const data = await fetch("http://127.0.0.1:5000/api/v1/tours");
+    return data;
+  }
 
-        const toursData = await data.json();
-        setTours(toursData.data);
-      },
-    [],
-  );
+  const { isPending, isError, data, error } = useQuery({
+    queryKey: ["tours"],
+    queryFn: getTours,
+  });
+
+  if (isPending) return <p>Loading...</p>;
+
+  const { data: tours } = data;
+  console.log(tours);
 
   return (
-    <>
-      <Header />
-      <Main>
-        <CardContainer>
-          {tours.length > 0 &&
-            tours.map((tour) => <Card tour={tour} key={tour.id} />)}
-        </CardContainer>
-      </Main>
-      <Footer />
-    </>
+    <Main>
+      <CardContainer>
+        {tours.length > 0 &&
+          tours.map((tour) => <Card tour={tour} key={tour.id} />)}
+      </CardContainer>
+    </Main>
   );
 }
 
