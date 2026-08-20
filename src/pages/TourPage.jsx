@@ -7,6 +7,8 @@ import TourReviews from "../components/TourReviews";
 import TourCta from "../components/TourCta";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import Main from "../components/Main";
+import { BounceLoader } from "react-spinners";
 
 function TourPage() {
   const { slug } = useParams();
@@ -24,7 +26,21 @@ function TourPage() {
     queryFn: () => getTourBySlug(slug),
   });
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending)
+    return (
+      <Main>
+        <div
+          style={{
+            height: "40vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <BounceLoader color="#55c57a" />
+        </div>
+      </Main>
+    );
 
   const { data: tourData } = data;
 

@@ -1,26 +1,5 @@
 function TourCta({ tour }) {
-  const {
-    duration,
-    name,
-    startLocation,
-    difficulty,
-    id,
-    description,
-    durationWeeks,
-    guides,
-    imageCover,
-    images,
-    secretTour,
-    startDates,
-    locations,
-    maxGroupSize,
-    price,
-    ratingsAverage,
-    ratingsQuantity,
-    slug,
-    summary,
-  } = tour;
-  console.log(images);
+  const { duration, images } = tour;
 
   return (
     <section className="section-cta">

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Review from "./Review";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";

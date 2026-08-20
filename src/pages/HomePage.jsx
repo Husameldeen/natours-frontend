@@ -1,3 +1,4 @@
+import { BounceLoader } from "react-spinners";
 import Card from "../components/Card";
 import CardContainer from "../components/CardContainer";
 import Main from "../components/Main";
@@ -16,7 +17,21 @@ function HomePage() {
     queryFn: getTours,
   });
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending)
+    return (
+      <Main>
+        <div
+          style={{
+            height: "40vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <BounceLoader color="#55c57a" />
+        </div>
+      </Main>
+    );
 
   const { data: tours } = data;
   console.log(tours);
