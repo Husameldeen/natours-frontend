@@ -1,6 +1,8 @@
 function TourCta({ tour }) {
   const { duration, images } = tour;
 
+  const user = localStorage.getItem("user");
+
   return (
     <section className="section-cta">
       <div className="cta">
@@ -28,9 +30,15 @@ function TourCta({ tour }) {
             {duration} days. 1 adventure. Infinite memories. Make it yours
             today!
           </p>
-          <button className="btn btn--green span-all-rows">
-            Book tour now!
-          </button>
+          {user ? (
+            <button className="btn btn--green span-all-rows">
+              Book tour now!
+            </button>
+          ) : (
+            <button className="btn btn--green span-all-rows">
+              Login to book a tour
+            </button>
+          )}
         </div>
       </div>
     </section>

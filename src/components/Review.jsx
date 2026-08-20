@@ -1,8 +1,4 @@
 function Review({ review }) {
-  // console.log(review);
-
-  console.log(Array(review.rating));
-
   return (
     <div className="reviews__card">
       <div className="reviews__avatar">
@@ -17,11 +13,11 @@ function Review({ review }) {
       <div className="reviews__rating">
         {[...Array(5)].map((_, i) =>
           i < review.rating ? (
-            <svg className="reviews__star reviews__star--active">
+            <svg key={i} className="reviews__star reviews__star--active">
               <use xlinkHref="src/assets/icons.svg#icon-star"></use>
             </svg>
           ) : (
-            <svg className="reviews__star reviews__star--inactive">
+            <svg key={i} className="reviews__star reviews__star--inactive">
               <use xlinkHref="src/assets/icons.svg#icon-star"></use>
             </svg>
           ),

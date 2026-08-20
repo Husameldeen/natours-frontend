@@ -5,6 +5,8 @@ import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import TourPage from "./pages/TourPage";
 import "./App.css";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const queryClient = new QueryClient();
 function App() {
@@ -17,6 +19,22 @@ function App() {
             element={
               <Layout>
                 <HomePage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <Layout>
+                <Login />
+              </Layout>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <Layout>
+                <Signup />
               </Layout>
             }
           />

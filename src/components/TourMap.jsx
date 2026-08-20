@@ -3,11 +3,7 @@ import L from "leaflet";
 import markerIcon from "../assets/pin.png";
 
 function TourMap({ tour }) {
-  const { startLocation, locations } = tour;
-
-  // const { coordinates: startCoor } = startLocation;
-
-  console.log(startLocation, locations);
+  const { locations } = tour;
 
   const latLngConverter = (lng, lat) => [lat, lng];
 
@@ -36,11 +32,6 @@ function TourMap({ tour }) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {/* <Marker position={latLngConverter(startCoor[0], startCoor[1])}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker> */}
           {locations.map((loc) => (
             <Marker
               icon={customIcon}

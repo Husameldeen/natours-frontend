@@ -1193,7 +1193,7 @@ body {
 }
 
 .error {
-  position: absolute;
+  position: relative;
   top: 35%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -1222,6 +1222,7 @@ body {
   font-weight: 700;
   max-width: 50rem;
   margin: 0 auto;
+  text-align: center;
 }
 
 .login-form {

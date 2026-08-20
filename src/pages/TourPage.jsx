@@ -21,7 +21,7 @@ function TourPage() {
     return data;
   }
 
-  const { isPending, isError, data, error } = useQuery({
+  const { isPending, isError, data } = useQuery({
     queryKey: ["tour", slug],
     queryFn: () => getTourBySlug(slug),
   });
@@ -40,6 +40,19 @@ function TourPage() {
           <BounceLoader color="#55c57a" />
         </div>
       </Main>
+    );
+
+  if (isError)
+    return (
+      <main className="main">
+        <div className="error__title">
+          <h2 className="heading-secondary heading-secondary--error">
+            Uh oh! Something went wrong!
+          </h2>
+          <h2 className="error__emoji">😢 🤯</h2>
+        </div>
+        <div className="error__msg">Page wasn't found!</div>
+      </main>
     );
 
   const { data: tourData } = data;
