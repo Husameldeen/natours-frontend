@@ -1,7 +1,5 @@
-import { useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useUser } from "../context/userContext";
-import { useLogin } from "../hooks/useLogin";
 
 function NavBar() {
   const { user } = useUser();

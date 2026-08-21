@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/userContext";
+import toast from "react-hot-toast";
 
 export function useLogin() {
   const navigate = useNavigate();
@@ -32,7 +33,11 @@ export function useLogin() {
       queryClient.setQueryData(["user"], data.data.user);
       localStorage.setItem("token", data.token);
       setUser(data.data.user);
+      toast.success("Logged In Successfully!");
       navigate("/");
+    },
+    onError: () => {
+      toast.error("Wronge email or password!");
     },
   });
 

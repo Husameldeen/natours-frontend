@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
 import "./App.css";
+import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();
 function App() {
@@ -51,6 +52,15 @@ function App() {
             />
           </Routes>
         </BrowserRouter>
+        <Toaster
+          toastOptions={{
+            style: {
+              padding: "16px",
+              fontSize: "16px",
+              fontWeight: "500",
+            },
+          }}
+        />
       </QueryClientProvider>
     </UserProvider>
   );

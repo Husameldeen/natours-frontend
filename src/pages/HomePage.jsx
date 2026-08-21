@@ -4,23 +4,45 @@ import CardContainer from "../components/CardContainer";
 import Main from "../components/Main";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useLogin } from "../hooks/useLogin";
+import { useUser } from "../context/userContext";
 
 function HomePage() {
-  const { user } = useLogin();
+  const token = localStorage.getItem("token");
+  const { setUser } = useUser();
+
+  const BASE_URL = "http://127.0.0.1:5000/api/v1";
 
   async function getTours() {
-    const { data } = await axios.get("http://127.0.0.1:5000/api/v1/tours");
+    const { data } = await axios.get(`${BASE_URL}/tours`);
 
     return data;
   }
 
-  const { isPending, isError, data } = useQuery({
+  async function getLoggedinUser() {
+    const { data } = await axios.get(`${BASE_URL}/users/is-loggedin`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return data;
+  }
+
+  const {
+    isPending: isPendingTour,
+    isError: isErrorTour,
+    data: dataTour,
+  } = useQuery({
     queryKey: ["tours"],
     queryFn: getTours,
   });
 
-  if (isPending)
+  const { isPending: isPendingUser, data: dataUser } = useQuery({
+    queryKey: ["user"],
+    queryFn: getLoggedinUser,
+  });
+
+  if (isPendingTour || isPendingUser)
     return (
       <Main>
         <div
@@ -36,7 +58,7 @@ function HomePage() {
       </Main>
     );
 
-  if (isError)
+  if (isErrorTour)
     return (
       <main className="main">
         <div className="error__title">
@@ -49,7 +71,9 @@ function HomePage() {
       </main>
     );
 
-  const { data: tours } = data;
+  const { data: tours } = dataTour;
+
+  if (dataUser) setUser(dataUser.data.user);
 
   return (
     <Main>

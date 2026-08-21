@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
+import { useUser } from "../context/userContext";
+
 function TourCta({ tour }) {
   const { duration, images } = tour;
 
-  const user = localStorage.getItem("user");
+  const { user } = useUser();
 
   return (
     <section className="section-cta">
@@ -30,14 +33,14 @@ function TourCta({ tour }) {
             {duration} days. 1 adventure. Infinite memories. Make it yours
             today!
           </p>
-          {user ? (
+          {user._id ? (
             <button className="btn btn--green span-all-rows">
               Book tour now!
             </button>
           ) : (
-            <button className="btn btn--green span-all-rows">
+            <Link to={"/login"} className="btn btn--green span-all-rows">
               Login to book a tour
-            </button>
+            </Link>
           )}
         </div>
       </div>
