@@ -1,8 +1,10 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { useUser } from "../context/userContext";
+import { useLogin } from "../hooks/useLogin";
 
 function NavBar() {
-  const user = localStorage.getItem("user");
+  const { user } = useUser();
 
   return (
     <header className="header">
@@ -27,18 +29,18 @@ function NavBar() {
         <img src="src/assets/logo-white.png" alt="Natours logo" />
       </div>
       <nav className="nav nav--user">
-        {user ? (
+        {user._id ? (
           <>
             <Link to="#" className="nav__el">
               My bookings
             </Link>
             <Link to="#" className="nav__el">
               <img
-                src="src/assets/users/user-1.jpg"
+                src={`src/assets/users/${user.photo}`}
                 alt="User photo"
                 className="nav__user-img"
               />
-              <span>Jonas</span>
+              <span>{user.name}</span>
             </Link>
           </>
         ) : (

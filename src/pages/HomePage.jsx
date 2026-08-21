@@ -4,8 +4,11 @@ import CardContainer from "../components/CardContainer";
 import Main from "../components/Main";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useLogin } from "../hooks/useLogin";
 
 function HomePage() {
+  const { user } = useLogin();
+
   async function getTours() {
     const { data } = await axios.get("http://127.0.0.1:5000/api/v1/tours");
 

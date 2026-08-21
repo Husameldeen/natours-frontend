@@ -1,43 +1,19 @@
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { ScaleLoader } from "react-spinners";
+import { useLogin } from "../hooks/useLogin";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
-
-  async function loginUser() {
-    const { data } = await axios.post(
-      "http://127.0.0.1:5000/api/v1/users/login",
-      {
-        email,
-        password,
-      },
-    );
-
-    return data;
-  }
-
-  const { mutate, isPending, isError, data } = useMutation({
-    mutationFn: loginUser,
-    mutationKey: ["user"],
-    onSuccess: (data) => {
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", data.data.user.name);
-      navigate(-1, { replace: true });
-    },
-  });
+  const { login, isPending, isError, user } = useLogin();
 
   function handleSubmit(e) {
     e.preventDefault();
 
     if (!email || !password) return;
 
-    mutate();
+    login({ email, password });
   }
 
   return (
@@ -75,7 +51,12 @@ function Login() {
             />
           </div>
           <div className="form__group">
-            <button className="btn btn--green" onClick={handleSubmit} required>
+            <button
+              className="btn btn--green"
+              type="submit"
+              onClick={(e) => handleSubmit(e)}
+              required
+            >
               {isPending ? <ScaleLoader color="#eee" height={15} /> : "Log in"}
             </button>
           </div>
