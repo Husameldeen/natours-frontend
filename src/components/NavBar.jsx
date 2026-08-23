@@ -32,7 +32,7 @@ function NavBar() {
             <Link to="#" className="nav__el">
               My bookings
             </Link>
-            <Link to="#" className="nav__el">
+            <Link to="/account" className="nav__el">
               <img
                 src={`src/assets/users/${user.photo}`}
                 alt="User photo"

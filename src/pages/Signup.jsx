@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ScaleLoader } from "react-spinners";
+import { BASE_URL } from "../service/services";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -13,15 +14,12 @@ function Signup() {
   const navigate = useNavigate();
 
   async function signupUser() {
-    const { data } = await axios.post(
-      "http://127.0.0.1:5000/api/v1/users/signup",
-      {
-        name,
-        email,
-        password,
-        passwordConfirm,
-      },
-    );
+    const { data } = await axios.post(`${BASE_URL}/api/v1/users/signup`, {
+      name,
+      email,
+      password,
+      passwordConfirm,
+    });
 
     return data;
   }
@@ -32,7 +30,7 @@ function Signup() {
     onSuccess: (data) => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", data.data.user.name);
-      navigate(-1, { replace: true });
+      navigate("/");
     },
   });
 

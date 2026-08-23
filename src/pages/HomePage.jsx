@@ -1,16 +1,16 @@
-import { BounceLoader } from "react-spinners";
 import Card from "../components/Card";
 import CardContainer from "../components/CardContainer";
 import Main from "../components/Main";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useUser } from "../context/userContext";
+import { BASE_URL } from "../service/services";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 function HomePage() {
   const token = localStorage.getItem("token");
   const { setUser } = useUser();
-
-  const BASE_URL = "http://127.0.0.1:5000/api/v1";
 
   async function getTours() {
     const { data } = await axios.get(`${BASE_URL}/tours`);
@@ -42,38 +42,13 @@ function HomePage() {
     queryFn: getLoggedinUser,
   });
 
-  if (isPendingTour || isPendingUser)
-    return (
-      <Main>
-        <div
-          style={{
-            height: "40vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <BounceLoader color="#55c57a" />
-        </div>
-      </Main>
-    );
+  if (isPendingTour || isPendingUser) return <Loading />;
 
-  if (isErrorTour)
-    return (
-      <main className="main">
-        <div className="error__title">
-          <h2 className="heading-secondary heading-secondary--error">
-            Uh oh! Something went wrong!
-          </h2>
-          <h2 className="error__emoji">😢 🤯</h2>
-        </div>
-        <div className="error__msg">Page wasn't found!</div>
-      </main>
-    );
+  if (isErrorTour) return <Error />;
 
   const { data: tours } = dataTour;
 
-  if (dataUser) setUser(dataUser.data.user);
+  if (dataUser?.data?.user) setUser(dataUser.data.user);
 
   return (
     <Main>

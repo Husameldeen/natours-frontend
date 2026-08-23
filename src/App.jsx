@@ -10,6 +10,7 @@ import Signup from "./pages/Signup";
 
 import "./App.css";
 import { Toaster } from "react-hot-toast";
+import Account from "./pages/Account";
 
 const queryClient = new QueryClient();
 function App() {
@@ -39,6 +40,14 @@ function App() {
               element={
                 <Layout>
                   <Signup />
+                </Layout>
+              }
+            />
+            <Route
+              path="/account"
+              element={
+                <Layout>
+                  <Account />
                 </Layout>
               }
             />

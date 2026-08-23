@@ -7,15 +7,16 @@ import TourReviews from "../components/TourReviews";
 import TourCta from "../components/TourCta";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import Main from "../components/Main";
-import { BounceLoader } from "react-spinners";
+import { BASE_URL } from "../service/services";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 function TourPage() {
   const { slug } = useParams();
 
   async function getTourBySlug(slugValue) {
     const { data } = await axios.get(
-      `http://127.0.0.1:5000/api/v1/tours?slug=${slugValue}`,
+      `${BASE_URL}/api/v1/tours?slug=${slugValue}`,
     );
 
     return data;
@@ -26,34 +27,9 @@ function TourPage() {
     queryFn: () => getTourBySlug(slug),
   });
 
-  if (isPending)
-    return (
-      <Main>
-        <div
-          style={{
-            height: "40vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <BounceLoader color="#55c57a" />
-        </div>
-      </Main>
-    );
+  if (isPending) return <Loading />;
 
-  if (isError)
-    return (
-      <main className="main">
-        <div className="error__title">
-          <h2 className="heading-secondary heading-secondary--error">
-            Uh oh! Something went wrong!
-          </h2>
-          <h2 className="error__emoji">😢 🤯</h2>
-        </div>
-        <div className="error__msg">Page wasn't found!</div>
-      </main>
-    );
+  if (isError) return <Error />;
 
   const { data: tourData } = data;
 
