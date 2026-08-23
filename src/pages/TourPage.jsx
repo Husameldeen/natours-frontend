@@ -15,9 +15,7 @@ function TourPage() {
   const { slug } = useParams();
 
   async function getTourBySlug(slugValue) {
-    const { data } = await axios.get(
-      `${BASE_URL}/api/v1/tours?slug=${slugValue}`,
-    );
+    const { data } = await axios.get(`${BASE_URL}/tours?slug=${slugValue}`);
 
     return data;
   }

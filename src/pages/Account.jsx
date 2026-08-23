@@ -11,10 +11,12 @@ function Account() {
   const token = localStorage.getItem("token");
   const { setUser } = useUser();
 
-  async function getME() {
+  async function getME(bearerToken) {
+    if (!bearerToken) return;
+
     const { data } = await axios.get(`${BASE_URL}/users/me`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${bearerToken}`,
       },
     });
 
@@ -22,8 +24,8 @@ function Account() {
   }
 
   const { isPending, isError, data } = useQuery({
-    queryKey: ["me"],
-    queryFn: getME,
+    queryKey: ["me", token],
+    queryFn: () => getME(token),
   });
 
   if (isPending) return <Loading />;

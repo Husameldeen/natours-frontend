@@ -7,7 +7,8 @@ function TourMap({ tour }) {
 
   const latLngConverter = (lng, lat) => [lat, lng];
 
-  const avgCenter = Math.round(locations.length / 2);
+  const avgCenter =
+    locations.length === 1 ? 0 : Math.round(locations.length / 2);
 
   const customIcon = L.icon({
     iconUrl: markerIcon,
@@ -22,7 +23,7 @@ function TourMap({ tour }) {
         <MapContainer
           center={latLngConverter(
             locations.at(avgCenter).coordinates[0],
-            locations.at(avgCenter).coordinates[1],
+            locations.at(avgCenter)?.coordinates[1],
           )}
           zoom={6}
           scrollWheelZoom={false}

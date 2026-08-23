@@ -18,10 +18,13 @@ function HomePage() {
     return data;
   }
 
-  async function getLoggedinUser() {
+  async function getLoggedinUser(bearerToken) {
+    if (!bearerToken) return;
+    console.log(bearerToken);
+
     const { data } = await axios.get(`${BASE_URL}/users/is-loggedin`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${bearerToken}`,
       },
     });
 
@@ -37,9 +40,13 @@ function HomePage() {
     queryFn: getTours,
   });
 
-  const { isPending: isPendingUser, data: dataUser } = useQuery({
-    queryKey: ["user"],
-    queryFn: getLoggedinUser,
+  const {
+    isPending: isPendingUser,
+    error,
+    data: dataUser,
+  } = useQuery({
+    queryKey: ["user", token],
+    queryFn: () => getLoggedinUser(token),
   });
 
   if (isPendingTour || isPendingUser) return <Loading />;
