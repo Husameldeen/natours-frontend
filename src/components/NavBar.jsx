@@ -10,7 +10,6 @@ function NavBar() {
   const { user, setUser } = useUser();
 
   const navigate = useNavigate();
-  console.log(user);
 
   async function logout() {
     const { data } = await axios.get(`${BASE_URL}/users/logout`);

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { BASE_URL } from "../service/services";
 import { useMutation } from "@tanstack/react-query";
 import { ScaleLoader } from "react-spinners";
@@ -9,18 +8,19 @@ import toast from "react-hot-toast";
 function ChangeAccountData({ user }) {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
+  const [newPhoto, setNewPhoto] = useState(null);
 
-  async function updateUser() {
+  async function updateUser(formData) {
     const token = localStorage.getItem("token");
 
     const { data } = await axios.patch(
       `${BASE_URL}/users/update-me`,
-      {
-        name,
-        email,
-      },
+
+      formData,
+
       {
         headers: {
+          "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
       },
@@ -47,7 +47,14 @@ function ChangeAccountData({ user }) {
 
     if (!name || !email) return;
 
-    mutate();
+    const formData = new FormData();
+
+    formData.append("name", name);
+    formData.append("email", email);
+
+    if (newPhoto) formData.append("photo", newPhoto);
+
+    mutate(formData);
   }
 
   return (
@@ -86,7 +93,18 @@ function ChangeAccountData({ user }) {
             src={`src/assets/users/${user.photo}`}
             alt={`${user.name}`}
           />
-          <Link className="btn-text">Choose new photo</Link>
+
+          <input
+            type="file"
+            className="form__upload"
+            accept="image/*"
+            id="photo"
+            name="photo"
+            onChange={(e) => setNewPhoto(e.target.files[0])}
+          />
+          <label htmlFor="photo" className="btn-text">
+            Choose new photo
+          </label>
         </div>
         <div className="form__group right">
           <button className="btn btn--small btn--green" onClick={handleSubmit}>
