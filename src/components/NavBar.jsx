@@ -8,6 +8,7 @@ import { ScaleLoader } from "react-spinners";
 
 function NavBar() {
   const { user, setUser } = useUser();
+  console.log(user);
 
   const navigate = useNavigate();
 
@@ -61,7 +62,7 @@ function NavBar() {
             </Link> */}
             <Link to="/account" className="nav__el">
               <img
-                src={`src/assets/users/${user.photo}`}
+                src={user.photo.url}
                 alt="User photo"
                 className="nav__user-img"
               />
