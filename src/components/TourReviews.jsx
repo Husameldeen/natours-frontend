@@ -1,12 +1,11 @@
 import Review from "./Review";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { BASE_URL } from "../service/services";
 
 function TourReviews({ id }) {
   async function getTourReviews() {
-    const { data } = await axios.get(
-      `http://127.0.0.1:5000/api/v1/tours/${id}/reviews`,
-    );
+    const { data } = await axios.get(`${BASE_URL}/tours/${id}/reviews`);
 
     return data;
   }

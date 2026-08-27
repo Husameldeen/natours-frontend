@@ -20,7 +20,6 @@ function HomePage() {
 
   async function getLoggedinUser(bearerToken) {
     if (!bearerToken) return;
-    console.log(bearerToken);
 
     const { data } = await axios.get(`${BASE_URL}/users/is-loggedin`, {
       headers: {

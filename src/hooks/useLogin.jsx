@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/userContext";
 import toast from "react-hot-toast";
+import { BASE_URL } from "../service/services";
 
 export function useLogin() {
   const navigate = useNavigate();
@@ -10,13 +11,10 @@ export function useLogin() {
   const { setUser } = useUser();
 
   async function loginUser({ email, password }) {
-    const { data } = await axios.post(
-      "http://127.0.0.1:5000/api/v1/users/login",
-      {
-        email,
-        password,
-      },
-    );
+    const { data } = await axios.post(`${BASE_URL}/users/login`, {
+      email,
+      password,
+    });
 
     return data;
   }
