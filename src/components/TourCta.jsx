@@ -16,16 +16,8 @@ function TourCta({ tour }) {
             className=""
           />
         </div>
-        <img
-          src={`src/assets/tours/${images[1]}`}
-          alt=""
-          className="cta__img cta__img--1"
-        />
-        <img
-          src={`src/assets/tours/${images[0]}`}
-          alt=""
-          className="cta__img cta__img--2"
-        />
+        <img src={images[1]} alt="" className="cta__img cta__img--1" />
+        <img src={images[0]} alt="" className="cta__img cta__img--2" />
 
         <div className="cta__content">
           <h2 className="heading-secondary">What are you waiting for?</h2>

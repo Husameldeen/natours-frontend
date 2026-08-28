@@ -1,11 +1,13 @@
 import { LuStar } from "react-icons/lu";
 
 function Review({ review }) {
+  console.log(review.user);
+
   return (
     <div className="reviews__card">
       <div className="reviews__avatar">
         <img
-          src={`src/assets/users/${review?.user?.photo}`}
+          src={review?.user?.photo.url}
           alt="Jim Brown"
           className="reviews__avatar-img"
         />

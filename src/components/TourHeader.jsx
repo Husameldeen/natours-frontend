@@ -9,7 +9,7 @@ function TourHeader({ tour }) {
         <div className="header__hero-overlay">&nbsp;</div>
         <img
           className="header__hero-img"
-          src={`src/assets/tours/${imageCover}`}
+          src={imageCover}
           alt="The Sea Explorer"
         />
       </div>
