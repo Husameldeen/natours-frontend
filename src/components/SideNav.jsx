@@ -1,3 +1,11 @@
+import {
+  LuBriefcase,
+  LuCreditCard,
+  LuMap,
+  LuSettings,
+  LuStar,
+  LuUsers,
+} from "react-icons/lu";
 import { Link } from "react-router-dom";
 
 function SideNav() {
@@ -6,34 +14,22 @@ function SideNav() {
       <ul className="side-nav">
         <li className="side-nav--active">
           <Link to="">
-            <svg>
-              <use xlinkHref="src/assets/icons.svg#icon-settings"></use>
-            </svg>
-            | Settings
+            <LuSettings className="lu-icon" />| Settings
           </Link>
         </li>
         <li className="">
           <Link to="">
-            <svg>
-              <use xlinkHref="src/assets/icons.svg#icon-briefcase"></use>
-            </svg>
-            | My bookings
+            <LuBriefcase className="lu-icon" />| My bookings
           </Link>
         </li>
         <li className="">
           <Link to="">
-            <svg>
-              <use xlinkHref="src/assets/icons.svg#icon-star"></use>
-            </svg>
-            | My reviews
+            <LuStar className="lu-icon" />| My reviews
           </Link>
         </li>
         <li className="">
           <Link to="">
-            <svg>
-              <use xlinkHref="src/assets/icons.svg#icon-credit-card"></use>
-            </svg>
-            | Billing
+            <LuCreditCard className="lu-icon" />| Billing
           </Link>
         </li>
       </ul>
@@ -49,26 +45,17 @@ function AdminPanel() {
       <ul className="side-nav">
         <li>
           <Link to="">
-            <svg>
-              <use xlinkHref="src/assets/icons.svg#icon-map"></use>
-            </svg>
-            | Manage tours
+            <LuMap className="lu-icon" />| Manage tours
           </Link>
         </li>
         <li>
           <Link to="">
-            <svg>
-              <use xlinkHref="src/assets/icons.svg#icon-users"></use>
-            </svg>
-            | Manage users
+            <LuUsers className="lu-icon" />| Manage users
           </Link>
         </li>
         <li>
           <Link to="">
-            <svg>
-              <use xlinkHref="src/assets/icons.svg#icon-star"></use>
-            </svg>
-            | Manage reviews
+            <LuStar className="lu-icon" />| Manage reviews
           </Link>
         </li>
         {/* <li>

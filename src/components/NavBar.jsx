@@ -5,10 +5,10 @@ import { BASE_URL } from "../service/services";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { ScaleLoader } from "react-spinners";
+import { LuLogOut, LuSearch } from "react-icons/lu";
 
 function NavBar() {
   const { user, setUser } = useUser();
-  console.log(user);
 
   const navigate = useNavigate();
 
@@ -40,9 +40,7 @@ function NavBar() {
         </Link>
         <form className="nav__search">
           <button className="nav__search-btn">
-            <svg>
-              <use xlinkHref="src/assets/icons.svg#icon-search"></use>
-            </svg>
+            <LuSearch />
           </button>
           <input
             type="text"
@@ -52,7 +50,10 @@ function NavBar() {
         </form>
       </nav>
       <div className="header__logo">
-        <img src="src/assets/logo-white.png" alt="Natours logo" />
+        <img
+          src="https://res.cloudinary.com/peis3mhm/image/upload/v1787858261/logo-white.png"
+          alt="Natours logo"
+        />
       </div>
       <nav className="nav nav--user">
         {user._id ? (
@@ -69,7 +70,13 @@ function NavBar() {
               <span>{user.name}</span>
             </Link>
             <button className="nav__el" onClick={handleLogout}>
-              {isPending ? <ScaleLoader color="#eee" height={15} /> : "Log Out"}
+              {isPending ? (
+                <ScaleLoader color="#eee" height={15} />
+              ) : (
+                <>
+                  <LuLogOut />
+                </>
+              )}
             </button>
           </>
         ) : (

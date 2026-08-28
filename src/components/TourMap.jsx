@@ -1,6 +1,5 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import L from "leaflet";
-import markerIcon from "../assets/pin.png";
 
 function TourMap({ tour }) {
   const { locations } = tour;
@@ -11,8 +10,9 @@ function TourMap({ tour }) {
     locations.length === 1 ? 0 : Math.round(locations.length / 2);
 
   const customIcon = L.icon({
-    iconUrl: markerIcon,
-    iconSize: [32, 40],
+    iconUrl:
+      "https://res.cloudinary.com/peis3mhm/image/upload/v1787858260/pin.png",
+    iconSize: [30, 40],
     iconAnchor: [20, 40],
     popupAnchor: [0, -40],
   });

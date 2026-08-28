@@ -424,7 +424,7 @@ body {
 .heading-box__icon {
   height: 2rem;
   width: 2rem;
-  fill: currentColor;
+  color: currentColor;
   -webkit-filter: drop-shadow(0 0.75rem 0.5rem rgba(0, 0, 0, 0.25));
   filter: drop-shadow(0 0.75rem 0.5rem rgba(0, 0, 0, 0.25));
 }
@@ -486,7 +486,7 @@ body {
 .overview-box__icon {
   height: 2.25rem;
   width: 2.25rem;
-  fill: #55c57a;
+  color: #55c57a;
 }
 .overview-box__label {
   font-weight: 700;
@@ -672,10 +672,10 @@ body {
   margin-right: 1px;
 }
 .reviews__star--active {
-  fill: #55c57a;
+  color: #55c57a;
 }
 .reviews__star--inactive {
-  fill: #bbb;
+  color: #bbb;
 }
 
 .section-cta {
@@ -971,10 +971,11 @@ body {
   -webkit-transform: translateY(1px);
   transform: translateY(1px);
 }
-.nav__search-btn svg {
+.nav__search-btn :first-child {
   height: 2rem;
   width: 2rem;
-  fill: #f7f7f7;
+  color: #f7f7f7;
+  /* fill: #f7f7f7; */
 }
 .nav__search-input {
   font-family: inherit;
@@ -1053,10 +1054,10 @@ body {
   -webkit-transform: translateX(3px);
   transform: translateX(3px);
 }
-.side-nav svg {
+.side-nav .lu-icon {
   height: 1.9rem;
   width: 1.9rem;
-  fill: #f7f7f7;
+  color: #f7f7f7;
   margin-right: 2rem;
 }
 
@@ -1162,7 +1163,7 @@ body {
 .card__icon {
   height: 2rem;
   width: 2rem;
-  fill: #55c57a;
+  color: #55c57a;
 }
 .card__footer {
   background-color: #f7f7f7;

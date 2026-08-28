@@ -11,7 +11,7 @@ function TourCta({ tour }) {
       <div className="cta">
         <div className="cta__img cta__img--logo">
           <img
-            src={`src/assets/logo-white.png`}
+            src="https://res.cloudinary.com/peis3mhm/image/upload/v1787858261/logo-white.png"
             alt="Natours logo"
             className=""
           />

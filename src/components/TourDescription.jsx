@@ -1,3 +1,4 @@
+import { LuCalendar, LuStar, LuTrendingUp, LuUser } from "react-icons/lu";
 import TourGuides from "./TourGuides";
 
 function TourDescription({ tour }) {
@@ -17,30 +18,22 @@ function TourDescription({ tour }) {
           <div className="overview-box__group">
             <h2 className="heading-secondary ma-bt-lg">Quick facts</h2>
             <div className="overview-box__detail">
-              <svg className="overview-box__icon">
-                <use xlinkHref="src/assets/icons.svg#icon-calendar"></use>
-              </svg>
+              <LuCalendar className="overview-box__icon" />
               <span className="overview-box__label">Next date</span>
               <span className="overview-box__text">August 2021</span>
             </div>
             <div className="overview-box__detail">
-              <svg className="overview-box__icon">
-                <use xlinkHref="src/assets/icons.svg#icon-trending-up"></use>
-              </svg>
+              <LuTrendingUp className="overview-box__icon" />
               <span className="overview-box__label">Difficulty</span>
               <span className="overview-box__text">{difficulty}</span>
             </div>
             <div className="overview-box__detail">
-              <svg className="overview-box__icon">
-                <use xlinkHref="src/assets/icons.svg#icon-user"></use>
-              </svg>
+              <LuUser className="overview-box__icon" />
               <span className="overview-box__label">Participants</span>
               <span className="overview-box__text">{maxGroupSize} people</span>
             </div>
             <div className="overview-box__detail">
-              <svg className="overview-box__icon">
-                <use xlinkHref="src/assets/icons.svg#icon-star"></use>
-              </svg>
+              <LuStar className="overview-box__icon" />
               <span className="overview-box__label">Rating</span>
               <span className="overview-box__text">{ratingsAverage} / 5</span>
             </div>

@@ -1,3 +1,5 @@
+import { LuStar } from "react-icons/lu";
+
 function Review({ review }) {
   return (
     <div className="reviews__card">
@@ -13,13 +15,9 @@ function Review({ review }) {
       <div className="reviews__rating">
         {[...Array(5)].map((_, i) =>
           i < review.rating ? (
-            <svg key={i} className="reviews__star reviews__star--active">
-              <use xlinkHref="src/assets/icons.svg#icon-star"></use>
-            </svg>
+            <LuStar key={i} className="reviews__star reviews__star--active" />
           ) : (
-            <svg key={i} className="reviews__star reviews__star--inactive">
-              <use xlinkHref="src/assets/icons.svg#icon-star"></use>
-            </svg>
+            <LuStar key={i} className="reviews__star reviews__star--inactive" />
           ),
         )}
       </div>

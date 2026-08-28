@@ -1,3 +1,5 @@
+import { LuClock5, LuMapPin } from "react-icons/lu";
+
 function TourHeader({ tour }) {
   const { duration, name, startLocation, imageCover } = tour;
 
@@ -17,15 +19,11 @@ function TourHeader({ tour }) {
         </h1>
         <div className="heading-box__group">
           <div className="heading-box__detail">
-            <svg className="heading-box__icon">
-              <use xlinkHref="src/assets/icons.svg#icon-clock"></use>
-            </svg>
+            <LuClock5 className="heading-box__icon" />
             <span className="heading-box__text">{duration} days</span>
           </div>
           <div className="heading-box__detail">
-            <svg className="heading-box__icon">
-              <use xlinkHref="src/assets/icons.svg#icon-map-pin"></use>
-            </svg>
+            <LuMapPin className="heading-box__icon" />
             <span className="heading-box__text">
               {startLocation?.description}
             </span>

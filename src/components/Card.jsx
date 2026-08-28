@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { LuCalendar, LuFlag, LuMapPin, LuUsers } from "react-icons/lu";
 
 function Card({ tour }) {
   const {
@@ -46,27 +47,19 @@ function Card({ tour }) {
         </h4>
         <p className="card__text">{summary}</p>
         <div className="card__data">
-          <svg className="card__icon">
-            <use xlinkHref="src/assets/icons.svg#icon-map-pin"></use>
-          </svg>
+          <LuMapPin className="card__icon" />
           <span>{startLocation.description}</span>
         </div>
         <div className="card__data">
-          <svg className="card__icon">
-            <use xlinkHref="src/assets/icons.svg#icon-calendar"></use>
-          </svg>
+          <LuCalendar className="card__icon" />
           <span>April 2021</span>
         </div>
         <div className="card__data">
-          <svg className="card__icon">
-            <use xlinkHref="src/assets/icons.svg#icon-flag"></use>
-          </svg>
+          <LuFlag className="card__icon" />
           <span>{locations.length} stops</span>
         </div>
         <div className="card__data">
-          <svg className="card__icon">
-            <use xlinkHref="src/assets/icons.svg#icon-user"></use>
-          </svg>
+          <LuUsers className="card__icon" />
           <span>{maxGroupSize} people</span>
         </div>
       </div>

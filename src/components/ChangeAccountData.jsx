@@ -107,7 +107,11 @@ function ChangeAccountData({ user }) {
           </label>
         </div>
         <div className="form__group right">
-          <button className="btn btn--small btn--green" onClick={handleSubmit}>
+          <button
+            className="btn btn--small btn--green"
+            disabled={isPending}
+            onClick={handleSubmit}
+          >
             {isPending ? (
               <ScaleLoader color="#eee" height={15} />
             ) : (
