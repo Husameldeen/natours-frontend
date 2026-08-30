@@ -27,7 +27,7 @@ function Signup() {
     return data;
   }
 
-  const { mutate, isPending, isError, data } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: signupUser,
     mutationKey: ["user"],
     onSuccess: (data) => {

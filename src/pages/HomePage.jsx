@@ -3,7 +3,6 @@ import CardContainer from "../components/CardContainer";
 import Main from "../components/Main";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useUser } from "../context/userContext";
 import { BASE_URL } from "../service/services";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
