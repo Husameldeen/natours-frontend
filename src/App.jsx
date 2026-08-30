@@ -15,8 +15,8 @@ import Account from "./pages/Account";
 const queryClient = new QueryClient();
 function App() {
   return (
-    <UserProvider>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <UserProvider>
         <BrowserRouter>
           <Routes>
             <Route
@@ -70,8 +70,8 @@ function App() {
             },
           }}
         />
-      </QueryClientProvider>
-    </UserProvider>
+      </UserProvider>
+    </QueryClientProvider>
   );
 }
 

@@ -4,8 +4,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ScaleLoader } from "react-spinners";
 import { BASE_URL } from "../service/services";
+import { useUser } from "../context/userContext";
 
 function Signup() {
+  const { signup: signupContext } = useUser();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +17,7 @@ function Signup() {
   const navigate = useNavigate();
 
   async function signupUser() {
-    const { data } = await axios.post(`${BASE_URL}/api/v1/users/signup`, {
+    const { data } = await axios.post(`${BASE_URL}/users/signup`, {
       name,
       email,
       password,
@@ -28,8 +31,7 @@ function Signup() {
     mutationFn: signupUser,
     mutationKey: ["user"],
     onSuccess: (data) => {
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", data.data.user.name);
+      signupContext(data.data.user, data.token);
       navigate("/");
     },
   });

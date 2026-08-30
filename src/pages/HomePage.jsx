@@ -9,23 +9,8 @@ import Loading from "../components/Loading";
 import Error from "../components/Error";
 
 function HomePage() {
-  const token = localStorage.getItem("token");
-  const { setUser } = useUser();
-
   async function getTours() {
     const { data } = await axios.get(`${BASE_URL}/tours`);
-
-    return data;
-  }
-
-  async function getLoggedinUser(bearerToken) {
-    if (!bearerToken) return;
-
-    const { data } = await axios.get(`${BASE_URL}/users/is-loggedin`, {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-      },
-    });
 
     return data;
   }
@@ -39,22 +24,11 @@ function HomePage() {
     queryFn: getTours,
   });
 
-  const {
-    isPending: isPendingUser,
-    error,
-    data: dataUser,
-  } = useQuery({
-    queryKey: ["user", token],
-    queryFn: () => getLoggedinUser(token),
-  });
-
-  if (isPendingTour || isPendingUser) return <Loading />;
+  if (isPendingTour) return <Loading />;
 
   if (isErrorTour) return <Error />;
 
   const { data: tours } = dataTour;
-
-  if (dataUser?.data?.user) setUser(dataUser.data.user);
 
   return (
     <Main>

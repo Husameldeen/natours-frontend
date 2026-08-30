@@ -90,7 +90,7 @@ function ChangeAccountData({ user }) {
         <div className="form__group form__photo-upload">
           <img
             className="form__user-photo"
-            src={user.photo.url}
+            src={user?.photo?.url}
             alt={`${user.name}`}
           />
 

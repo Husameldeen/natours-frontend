@@ -8,7 +8,7 @@ import { ScaleLoader } from "react-spinners";
 import { LuLogOut, LuSearch } from "react-icons/lu";
 
 function NavBar() {
-  const { user, setUser } = useUser();
+  const { user, logout: logoutContext } = useUser();
 
   const navigate = useNavigate();
 
@@ -23,8 +23,7 @@ function NavBar() {
     mutationFn: logout,
     onSuccess: () => {
       toast.success("Logout successfully");
-      localStorage.setItem("token", "");
-      setUser("");
+      logoutContext();
       navigate("/", { replace: true });
     },
     onError: () => {
@@ -63,7 +62,7 @@ function NavBar() {
             </Link> */}
             <Link to="/account" className="nav__el">
               <img
-                src={user.photo.url}
+                src={user?.photo?.url}
                 alt="User photo"
                 className="nav__user-img"
               />

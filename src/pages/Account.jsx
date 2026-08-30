@@ -8,36 +8,14 @@ import Error from "../components/Error";
 import { useUser } from "../context/userContext";
 
 function Account() {
-  const token = localStorage.getItem("token");
-  const { setUser } = useUser();
-
-  async function getME(bearerToken) {
-    if (!bearerToken) return;
-
-    const { data } = await axios.get(`${BASE_URL}/users/me`, {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-      },
-    });
-
-    return data;
-  }
-
-  const { isPending, isError, data } = useQuery({
-    queryKey: ["me", token],
-    queryFn: () => getME(token),
-  });
+  const { user, isPending } = useUser();
 
   if (isPending) return <Loading />;
-
-  if (isError) return <Error />;
-
-  if (data) setUser(data.data.data);
 
   return (
     <div className="user-view">
       <SideNav />
-      <AccountSettings user={data.data.data} />
+      <AccountSettings user={user} />
     </div>
   );
 }

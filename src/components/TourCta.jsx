@@ -2,21 +2,20 @@ import { Link } from "react-router-dom";
 import { useUser } from "../context/userContext";
 import axios from "axios";
 import { BASE_URL } from "../service/services";
-// import Stripe from "stripe";
-
-import { loadStripe } from "@stripe/stripe-js";
-
-const stripe = await loadStripe(
-  "pk_test_51U9qAbH3NW1hehkF8nALle3KtAmt8hES0xarAoqksB6McxP5SVXQlkfYznAA0AnKD5Bd8DsI6peZDxQ7QW1LFVqm00yPCbXOW0",
-);
+import { useState } from "react";
+import { ScaleLoader } from "react-spinners";
 
 function TourCta({ tour }) {
   const { duration, images, _id: id } = tour;
+
+  const [loading, setLoading] = useState(false);
 
   const { user } = useUser();
 
   async function handleStripePayment(tourId) {
     if (!tourId) return;
+
+    setLoading(true);
 
     const token = localStorage.getItem("token");
 
@@ -30,6 +29,8 @@ function TourCta({ tour }) {
     );
 
     window.location.href = data.session.url;
+
+    setLoading(false);
 
     // await stripe.redirectToCheckout({ sessionId: data.session.id });
   }
@@ -58,7 +59,11 @@ function TourCta({ tour }) {
               onClick={() => handleStripePayment(id)}
               className="btn btn--green span-all-rows"
             >
-              Book tour now!
+              {loading ? (
+                <ScaleLoader color="#eee" height={15} />
+              ) : (
+                "Book tour now!"
+              )}
             </button>
           ) : (
             <Link to={"/login"} className="btn btn--green span-all-rows">

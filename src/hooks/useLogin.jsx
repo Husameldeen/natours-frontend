@@ -8,7 +8,7 @@ import { BASE_URL } from "../service/services";
 export function useLogin() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { setUser } = useUser();
+  const { login: loginContext } = useUser();
 
   async function loginUser({ email, password }) {
     const { data } = await axios.post(`${BASE_URL}/users/login`, {
@@ -26,11 +26,8 @@ export function useLogin() {
     data: user,
   } = useMutation({
     mutationFn: ({ email, password }) => loginUser({ email, password }),
-    // mutationKey: ["user"],
     onSuccess: (data) => {
-      queryClient.setQueryData(["user"], data.data.user);
-      localStorage.setItem("token", data.token);
-      setUser(data.data.user);
+      loginContext(data.data.user, data.token);
       toast.success("Logged In Successfully!");
       navigate("/");
     },
