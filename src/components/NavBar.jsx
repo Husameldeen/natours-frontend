@@ -5,7 +5,7 @@ import { BASE_URL } from "../service/services";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { ScaleLoader } from "react-spinners";
-import { LuLogOut, LuSearch } from "react-icons/lu";
+import { LuLogOut } from "react-icons/lu";
 
 function NavBar() {
   const { user, logout: logoutContext } = useUser();
@@ -35,9 +35,14 @@ function NavBar() {
     <header className="header">
       <nav className="nav nav--tours">
         <Link to="/" className="nav__el">
-          All tours
+          <div className="header__logo">
+            <img
+              src="https://res.cloudinary.com/peis3mhm/image/upload/v1787858262/logo-green.png"
+              alt="Natours logo"
+            />
+          </div>
         </Link>
-        <form className="nav__search">
+        {/* <form className="nav__search">
           <button className="nav__search-btn">
             <LuSearch />
           </button>
@@ -46,20 +51,17 @@ function NavBar() {
             placeholder="Search tours"
             className="nav__search-input"
           />
-        </form>
+        </form> */}
       </nav>
-      <div className="header__logo">
+      {/* <div className="header__logo">
         <img
           src="https://res.cloudinary.com/peis3mhm/image/upload/v1787858261/logo-white.png"
           alt="Natours logo"
         />
-      </div>
+      </div> */}
       <nav className="nav nav--user">
         {user._id ? (
           <>
-            {/* <Link to="#" className="nav__el">
-              My bookings
-            </Link> */}
             <Link to="/account" className="nav__el">
               <img
                 src={user?.photo?.url}

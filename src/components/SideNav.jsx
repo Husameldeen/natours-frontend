@@ -6,19 +6,29 @@ import {
   LuStar,
   LuUsers,
 } from "react-icons/lu";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useUser } from "../context/userContext";
 
 function SideNav() {
+  const { user } = useUser();
+  const location = useLocation();
+
   return (
     <nav className="user-view__menu">
       <ul className="side-nav">
-        <li className="side-nav--active">
-          <Link to="">
+        <li
+          className={location.pathname === "/account" ? "side-nav--active" : ""}
+        >
+          <Link to="/account">
             <LuSettings className="lu-icon" />| Settings
           </Link>
         </li>
-        <li className="">
-          <Link to="">
+        <li
+          className={
+            location.pathname === "/my-bookings" ? "side-nav--active" : ""
+          }
+        >
+          <Link to="/my-bookings">
             <LuBriefcase className="lu-icon" />| My bookings
           </Link>
         </li>
@@ -33,7 +43,7 @@ function SideNav() {
           </Link>
         </li>
       </ul>
-      <AdminPanel />
+      {user.role === "admin" && <AdminPanel />}
     </nav>
   );
 }

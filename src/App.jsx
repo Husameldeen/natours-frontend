@@ -11,6 +11,8 @@ import Signup from "./pages/Signup";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
 import Account from "./pages/Account";
+import AccountSettings from "./components/AccountSettings";
+import MyBookings from "./components/MyBookings";
 
 const queryClient = new QueryClient();
 function App() {
@@ -47,7 +49,19 @@ function App() {
               path="/account"
               element={
                 <Layout>
-                  <Account />
+                  <Account>
+                    <AccountSettings />
+                  </Account>
+                </Layout>
+              }
+            />
+            <Route
+              path="/my-bookings"
+              element={
+                <Layout>
+                  <Account>
+                    <MyBookings />
+                  </Account>
                 </Layout>
               }
             />
