@@ -10,7 +10,7 @@ function TourReviews({ id }) {
     return data;
   }
 
-  const { isPending, isError, data, error } = useQuery({
+  const { isPending, data } = useQuery({
     queryKey: ["reviews"],
     queryFn: getTourReviews,
   });
